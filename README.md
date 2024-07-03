@@ -8,7 +8,7 @@ This repo contains a Terraform script that will deploy:
     - A Kibana deployment
     - An Enterprise Search deployment
 
-The Terraform script will ensure that all these resources can communicate with each other. It will output the public facing Kibana URL where the user can access the Enterprise Search user interface.
+The Terraform script will ensure that all these resources can communicate with each other. It will output the public Kibana URL where the user can access the Enterprise Search user interface.
 
 It will also output the URL of the Elasticsearch deployment.
 
@@ -19,57 +19,85 @@ It will also output the URL of the Elasticsearch deployment.
 - [Terraform](https://www.terraform.io/)
 
 An alternative to installing **Terraform** is to create a **Schematics** workspace on your **IBM Cloud** account to run these scripts. See [Setting up Schematics](https://cloud.ibm.com/docs/schematics?topic=schematics-sch-create-wks&interface=ui) for details.
-## Steps
-
-### Step 1
-
+## Run scripts
 Get an API key by following [these steps](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key).
 
-### Step 2
+### Using local Terraform 
+
+#### Step 1
 
 Clone this repo
 
 ```sh
-git clone https://github.ibm.com/annumberhocker/elastic-kibana-ent-search.git
-cd elastic-kibana-ent-search/terraform
+git clone https://github.ibm.com/ibm-build-lab/elastic-kibana-ent-search-setup.git
+cd elastic-kibana-ent-search-setup/terraform
 ```
 
-### Step 3
+#### Step 2
 
 Create a `terraform.tfvars` document with the following parameters:
 
 ```
+# Required
 ibmcloud_api_key = "<your api key>"
-region = "<an ibm cloud region>" #e.g. eu-gb
-es_username = "admin"
 es_password = "<make up a password>" # Passwords must have between 15 and 32 characters and must contain a number, A-Z, a-z, 0-9, -, _
-es_version="<a supported major version>" # eg 8.12
-es_resource_group="<a new resource group to store elastic search, and code engine applications for kibana and enterprise search"
-ce_project = "<a new project for Code Engine" # Will error out if project exists already
+
+# Optional
+region = "<an ibm cloud region>" # default is us-south
+es_database_name = "<name of elasticsearch database>" # default is elastic_db
+es_version="<a supported major version>" # default is 8.12
+es_resource_group="<a new resource group to store database and code engine project>" # default is elasticsearch_rg
+es_tags = ["<tags>"] # Default is env:dev
+ce_project = "<a new project for Code Engine" # Will error out if project exists already. Default is elasticsearch_proj
+es_ram_mb = <MB of RAM>  # default is 4096, must be in increments of 128
+es_disk_mb = <MB of disk space> # Default is 102400, must be in increments of 128
+es_cpu_count = <# of cpus> # default is 3
 ```
 
-Note: The `variables.tf` file contains other variables you can edit to change the CPU, RAM, or disk allocation of your Elasticsearch instance.
+#### Step 3
 
-### Step 4
-
-Run Terraform to deploy the infrastructure:
-
+Run the scripts
 ```sh
 terraform init
+terraform plan
 terraform apply --auto-approve
 ```
 
-The output will contain the URL of the Kibana deployment:
+### Using a Schematics workspace on IBM Cloud
+
+#### Step 1 
+
+In `cloud.ibm.com`, search on **Schematics**.  Click on **Create a workspace**
+
+#### Step 2 
+
+Set the following:
+- **GitHub, GitLab or Bitbucket repository URL**: `https://github.com/ibm-build-lab/elasticsearch-kibana-enterprise-search-setup`
+- **Branch**: `main`
+- **Folder**: `terraform` 
+
+Click **Create**
+#### Step 3
+
+Edit the values for desired environment variables. To edit a variable, select the 3 dot menu at the end of the variable. Select **Edit**, uncheck **Use default**, enter new value and save
+#### Step 4
+Run `Generate Plan` to make sure there aren't any errors
+
+Run `Apply Plan`
+
+### Output
+
+The output from the Terraform scripts (in Schematics, it will be at the end of the log from the **Plan Apply** job) will contain the URL of the Kibana deployment:
 
 ```
-kibana_endpoint = "https://kibana-app.1dqmr45rt678g05.eu-gb.codeengine.appdomain.cloud"
+kibana_endpoint = "https://kibana-app.************.us-south.codeengine.appdomain.cloud"
 ```
 
-Log in  at this URL with the username and password you supplied above.
+Log in at this URL with the username `admin` and password you created above.
 
-Once logged in, you can configure Enterprise Search by visiting `https://kibana-app.1dqmr45rt678g05.eu-gb.codeengine.appdomain.cloud/app/enterprise_search/app_search/engines`
+Once logged in, you can configure Enterprise Search by visiting `https://<kibana_endpoint>/app/enterprise_search/app_search/engines`
 
-The output also contains the URL of the Elasticsearch deployment, which can be used to connect it to WxA.
+The output should also provide the URL of the **Elasticsearch** deployment, which can be used to connect it to **watsonx Assistant**. If this isn't provided, you can get this by going into the database resource (cloud.ibm.com -> **Resource List** -> **Databases**), going to the **Overview** page, opening the **HTTPS** tab. **Watsonx Assistant** will expect this in the form of `https://<hostname>:<port>`
 
 ## Notes about implementation
 

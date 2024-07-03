@@ -29,8 +29,8 @@ Get an API key by following [these steps](https://cloud.ibm.com/docs/account?top
 Clone this repo
 
 ```sh
-git clone https://github.ibm.com/ibm-build-lab/elastic-kibana-ent-search-setup.git
-cd elastic-kibana-ent-search-setup/terraform
+git clone https://github.ibm.com/ibm-build-lab/terraform-elasticsearch-setup.git
+cd terraform-elasticsearch-setup/terraform
 ```
 
 #### Step 2

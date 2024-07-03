@@ -1,6 +1,6 @@
 # Elastic + Kibana + Enterprise Search deployment
 
-This repo contains a Terraform script that will deploy:
+This repo contains Terraform scripts that will deploy:
 
 - A resource group to contain all the infrastructure
 - An instance of IBM Cloud Databases for Elasticsearch Platinum

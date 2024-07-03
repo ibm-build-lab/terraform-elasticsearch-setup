@@ -3,10 +3,10 @@
 This repo contains Terraform scripts that will deploy:
 
 - A resource group to contain all the infrastructure
-- An instance of IBM Cloud Databases for Elasticsearch Platinum
-- A Code Engine Project with two applications:
-    - A Kibana deployment
-    - An Enterprise Search deployment
+- An instance of **IBM Cloud Databases for Elasticsearch** Platinum
+- A **Code Engine** project with two applications:
+    - A **Kibana** deployment
+    - An **Enterprise Search** deployment
 
 The Terraform script will ensure that all these resources can communicate with each other. It will output the public Kibana URL where the user can access the Enterprise Search user interface.
 

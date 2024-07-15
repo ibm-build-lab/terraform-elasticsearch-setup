@@ -98,6 +98,7 @@ Log in at this URL with the username `admin` and password you created above.
 
 Once logged in, you can configure Enterprise Search by visiting `https://<kibana_endpoint>/app/enterprise_search/app_search/engines`
 
+## Connecting watsonx Assistant to Elasticsearch instance
 The output should also provide the URL of the **Elasticsearch** deployment, which can be used to connect it to **watsonx Assistant**. If this isn't provided, you can get this by going into the database resource (cloud.ibm.com -> **Resource List** -> **Databases**), going to the **Overview** page, opening the **HTTPS** tab. **Watsonx Assistant** will expect this in the form of `https://<hostname>:<port>`
 
 ## Notes about implementation

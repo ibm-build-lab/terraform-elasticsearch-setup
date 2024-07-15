@@ -22,6 +22,29 @@ An alternative to installing **Terraform** is to create a **Schematics** workspa
 ## Run scripts
 Get an API key by following [these steps](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#create_user_key).
 
+
+### Using a Schematics workspace on IBM Cloud
+
+#### Step 1 
+
+In `cloud.ibm.com`, search on **Schematics**.  Click on **Create a workspace**
+
+#### Step 2 
+
+Set the following:
+- **GitHub, GitLab or Bitbucket repository URL**: `https://github.com/ibm-build-lab/elasticsearch-kibana-enterprise-search-setup`
+- **Branch**: `main`
+- **Folder**: `terraform` 
+
+Click **Create**
+#### Step 3
+
+Edit the values for desired environment variables. To edit a variable, select the 3 dot menu at the end of the variable. Select **Edit**, uncheck **Use default**, enter new value and save
+#### Step 4
+Run `Generate Plan` to make sure there aren't any errors
+
+Run `Apply Plan`
+
 ### Using local Terraform 
 
 #### Step 1
@@ -62,28 +85,6 @@ terraform init
 terraform plan
 terraform apply --auto-approve
 ```
-
-### Using a Schematics workspace on IBM Cloud
-
-#### Step 1 
-
-In `cloud.ibm.com`, search on **Schematics**.  Click on **Create a workspace**
-
-#### Step 2 
-
-Set the following:
-- **GitHub, GitLab or Bitbucket repository URL**: `https://github.com/ibm-build-lab/elasticsearch-kibana-enterprise-search-setup`
-- **Branch**: `main`
-- **Folder**: `terraform` 
-
-Click **Create**
-#### Step 3
-
-Edit the values for desired environment variables. To edit a variable, select the 3 dot menu at the end of the variable. Select **Edit**, uncheck **Use default**, enter new value and save
-#### Step 4
-Run `Generate Plan` to make sure there aren't any errors
-
-Run `Apply Plan`
 
 ### Output
 

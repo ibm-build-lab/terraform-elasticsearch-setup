@@ -32,7 +32,7 @@ In `cloud.ibm.com`, search on **Schematics**.  Click on **Create a workspace**
 #### Step 2 
 
 Set the following:
-- **GitHub, GitLab or Bitbucket repository URL**: `https://github.com/ibm-build-lab/elasticsearch-kibana-enterprise-search-setup`
+- **GitHub, GitLab or Bitbucket repository URL**: `https://github.com/ibm-build-lab/terraform-elasticsearch-setup`
 - **Branch**: `main`
 - **Folder**: `terraform` 
 

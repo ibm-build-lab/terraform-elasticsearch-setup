@@ -6,7 +6,9 @@ variable "es_database_name" {
     default = "elastic_db"
 }
 
-variable "es_password" {}
+variable "es_password" {
+    description = "Password must have between 15 and 32 characters, must contain a number, can include A-Z, a-z, 0-9, -, _, but can not start with special characters."
+}
 variable "es_version" {
     default = "8.12"
 }

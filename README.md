@@ -39,7 +39,13 @@ Set the following:
 Click **Create**
 #### Step 3
 
-Edit the values for desired environment variables. To edit a variable, select the 3 dot menu at the end of the variable. Select **Edit**, uncheck **Use default**, enter new value and save
+Edit the values for desired environment variables. To edit a variable, select the 3 dot menu at the end of the variable. Select **Edit**, uncheck **Use default**, enter new value and save.
+
+At a minimum, you will need to provide: 
+
+`ibmcloud_api_key`
+`es_password` - Password must have between 15 and 32 characters, must contain a number, can include A-Z, a-z, 0-9, -, _, but can not start with special characters.
+
 #### Step 4
 Run `Generate Plan` to make sure there aren't any errors
 

@@ -8,19 +8,16 @@ resource "ibm_database" "elastic" {
   resource_group_id = ibm_resource_group.ess_resource_group.id
   tags          = var.es_tags
 
+
   group {
     group_id = "member"
 
-    memory {
-      allocation_mb = var.es_ram_mb
+    host_flavor {
+      id = var.es_host_flavor
     }
 
     disk {
       allocation_mb = var.es_disk_mb
-    }
-
-    cpu {
-      allocation_count = var.es_cpu_count
     }
   }
 }

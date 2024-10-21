@@ -9,6 +9,12 @@ variable "es_database_name" {
 variable "es_password" {
     description = "Password must have between 15 and 32 characters, must contain a number, can include A-Z, a-z, 0-9, -, _, but can not start with special characters."
 }
+
+variable "es_host_flavor" {
+    default = "b3c.4x16.encrypted"
+    description = "Choose from: b3c.4x16.encrypted, b3c.8x32.encrypted, m3c.8x64.encrypted, b3c.16x64.encrypted, b3c.32x128.encrypted, m3c.30x240.encrypted"
+}
+
 variable "es_version" {
     default = "8.12"
 }

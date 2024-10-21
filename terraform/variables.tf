@@ -3,7 +3,7 @@ variable "region" {
     default = "us-south"
 }
 variable "es_database_name" {
-    default = "ma_elastic_db"
+    default = "elastic_db"
 }
 
 variable "es_password" {
@@ -12,6 +12,7 @@ variable "es_password" {
 
 variable "es_host_flavor" {
     default = "b3c.4x16.encrypted"
+    description = "Choose from: b3c.4x16.encrypted, b3c.8x32.encrypted, m3c.8x64.encrypted, b3c.16x64.encrypted, b3c.32x128.encrypted, m3c.30x240.encrypted"
 }
 
 variable "es_version" {
@@ -27,11 +28,11 @@ variable "es_cpu_count" {
     default = 3
 }
 variable "es_resource_group" {
-    default = "ma_elasticsearch_rg"
+    default = "elasticsearch_rg"
 }
 variable "es_tags" {
     default = ["env:dev"]
 }
 variable "ce_project" {
-    default = "ma_elasticsearch_proj"
+    default = "elasticsearch_proj"
 }

@@ -78,9 +78,8 @@ es_version="<a supported major version>" # default is 8.12
 es_resource_group="<a new resource group to store database and code engine project>" # default is elasticsearch_rg
 es_tags = ["<tags>"] # Default is env:dev
 ce_project = "<a new project for Code Engine" # Will error out if project exists already. Default is elasticsearch_proj
-es_ram_mb = <MB of RAM>  # default is 4096, must be in increments of 128
 es_disk_mb = <MB of disk space> # Default is 102400, must be in increments of 128
-es_cpu_count = <# of cpus> # default is 3
+es_host_flavor = <Choose from: b3c.4x16.encrypted, b3c.8x32.encrypted, m3c.8x64.encrypted, b3c.16x64.encrypted, b3c.32x128.encrypted, m3c.30x240.encrypted> # default is b3c.4x16.encrypted
 ```
 
 #### Step 3
